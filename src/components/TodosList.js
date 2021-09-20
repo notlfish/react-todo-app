@@ -2,6 +2,7 @@ import React from 'react';
 import PropTypes from 'prop-types';
 import TodoItem from './TodoItem';
 
+// eslint-disable-next-line react/prefer-stateless-function
 class TodosList extends React.Component {
   render() {
     const { todos } = this.props;
