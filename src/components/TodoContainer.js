@@ -4,31 +4,22 @@ import TodosList from './TodosList';
 import Header from './Header';
 import InputTodo from './InputTodo';
 
+const STORAGE_KEY = 'CANCION_CON_TODOS';
+
 class TodoContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: [
-        {
-          id: uuidv4(),
-          title: 'Setup development environment',
-          completed: true,
-        },
-        {
-          id: uuidv4(),
-          title: 'Develop website and add content',
-          completed: false,
-        },
-        {
-          id: uuidv4(),
-          title: 'Deploy to live server',
-          completed: false,
-        },
-      ],
+      todos: JSON.parse(localStorage.getItem(STORAGE_KEY)) || [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.delTodo = this.delTodo.bind(this);
     this.addTodoItem = this.addTodoItem.bind(this);
+  }
+
+  componentDidUpdate() {
+    const { todos } = this.state;
+    localStorage.setItem(STORAGE_KEY, JSON.stringify(todos));
   }
 
   handleChange = (id) => {
@@ -75,6 +66,7 @@ class TodoContainer extends React.Component {
           return todo;
         }),
       };
+
       return newTodos;
     });
   }
