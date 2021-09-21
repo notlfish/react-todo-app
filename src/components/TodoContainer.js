@@ -10,11 +10,24 @@ class TodoContainer extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      todos: JSON.parse(localStorage.getItem(STORAGE_KEY)) || [],
+      todos: [],
     };
     this.handleChange = this.handleChange.bind(this);
     this.delTodo = this.delTodo.bind(this);
     this.addTodoItem = this.addTodoItem.bind(this);
+  }
+
+  componentDidMount() {
+    const localTodos = localStorage.getItem(STORAGE_KEY);
+    if (localTodos) {
+      this.setState({ todos: JSON.parse(localTodos) });
+      return;
+    }
+    fetch('https://jsonplaceholder.typicode.com/todos?_limit=10')
+      .then((response) => response.json())
+      .then((todos) => this.setState({
+        todos: todos.map((todo) => ({ ...todo, id: uuidv4() })),
+      }));
   }
 
   componentDidUpdate() {
