@@ -23,6 +23,22 @@ class TodoItem extends React.Component {
     });
   }
 
+  handleUpdateDone = (event) => {
+    const { setUpdate, todo: { id } } = this.props;
+    const { bufferTitle } = this.state;
+    if (event.key === 'Enter') {
+      setUpdate(bufferTitle, id);
+      this.setState({
+        editing: false,
+      });
+    }
+    if (event.key === 'Escape') {
+      this.setState({
+        editing: false,
+      });
+    }
+  }
+
   render() {
     const completedStyle = {
       fontStyle: 'italic',
@@ -33,7 +49,7 @@ class TodoItem extends React.Component {
 
     const {
       todo: { id, title, completed }, handleChangeProps,
-      handleDelete, setUpdate,
+      handleDelete,
     } = this.props;
     const { editing, bufferTitle } = this.state;
 
@@ -60,22 +76,14 @@ class TodoItem extends React.Component {
             {title}
           </span>
         </div>
-        <form onSubmit={(e) => {
-          e.preventDefault();
-          setUpdate(bufferTitle, id);
-          this.setState({
-            editing: false,
-          });
-        }}
-        >
-          <input
-            type="text"
-            className={styles.textInput}
-            style={editMode}
-            value={bufferTitle}
-            onChange={this.changeUpdate}
-          />
-        </form>
+        <input
+          type="text"
+          className={styles.textInput}
+          style={editMode}
+          value={bufferTitle}
+          onChange={this.changeUpdate}
+          onKeyDown={this.handleUpdateDone}
+        />
       </li>
     );
   }
