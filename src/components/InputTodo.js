@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import { FaPlusCircle } from 'react-icons/fa';
 
 class InputTodo extends Component {
   constructor(props) {
@@ -41,7 +42,9 @@ class InputTodo extends Component {
             name="title"
             onChange={this.onChange}
           />
-          <button type="submit" className="input-submit">Submit</button>
+          <button type="submit" className="input-submit">
+            <FaPlusCircle />
+          </button>
         </form>
         {invalid ? <p className="form-alert">Task description cannot be empty</p> : null}
       </div>

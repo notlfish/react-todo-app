@@ -1,6 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 import styles from './TodoItem.module.scss';
+import { FaTrash } from "react-icons/fa"
 
 class TodoItem extends React.Component {
   constructor(props) {
@@ -71,7 +72,9 @@ class TodoItem extends React.Component {
             checked={completed}
             onChange={() => { handleChangeProps(id); }}
           />
-          <button type="button" onClick={() => handleDelete(id)}>Delete</button>
+          <button type="button" onClick={() => handleDelete(id)} className="delete-button">
+            <FaTrash />
+          </button>
           <span style={completed ? completedStyle : null}>
             {title}
           </span>

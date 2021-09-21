@@ -109,3 +109,19 @@ a:visited {
 .single-page h1 {
   margin: 20px 0;
 }
+
+.input-submit svg {
+  font-size: 20px;
+}
+
+.delete-button svg {
+  font-size: 16px;
+}
+
+.input-submit:hover {
+  color: darkgreen;
+}
+
+.delete-button:hover {
+  color: darkred;
+}
