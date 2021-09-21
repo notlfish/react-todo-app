@@ -69,3 +69,25 @@ body {
   outline: none;
   border: none;
 }
+
+.navBar ul {
+  display: flex;
+  justify-content: flex-end;
+  list-style: none;
+  margin-top: 10px;
+}
+
+.navBar a,
+.navBar a:visited {
+  text-decoration: none;
+  color: inherit;
+}
+
+.navBar ul li {
+  padding-right: 30px;
+}
+
+.active-link {
+  color: orangered !important;
+  text-decoration: none;
+}
