@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import { FaTrash } from 'react-icons/fa';
 import styles from './TodoItem.module.scss';
-import { FaTrash } from "react-icons/fa"
 
 class TodoItem extends React.Component {
   constructor(props) {
