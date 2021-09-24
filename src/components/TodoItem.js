@@ -25,7 +25,7 @@ class TodoItem extends React.Component {
   }
 
   handleUpdateDone = (event) => {
-    const { setUpdate, todo: { id } } = this.props;
+    const { setUpdate, todo: { id, title } } = this.props;
     const { bufferTitle } = this.state;
     if (event.key === 'Enter') {
       setUpdate(bufferTitle, id);
@@ -36,6 +36,7 @@ class TodoItem extends React.Component {
     if (event.key === 'Escape') {
       this.setState({
         editing: false,
+        bufferTitle: title,
       });
     }
   }
